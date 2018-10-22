@@ -5,8 +5,8 @@ After=network.target
 [Service]
 User=nikita
 Group=www-data
-WorkingDirectory=/home/nikita/todo/todo
-ExecStart=/home/nikita/todo/env/bin/gunicorn --access-logfile - --workers 3 --bind unix:/home/nikita/todo/todo/todo.sock todo.wsgi:application
+WorkingDirectory=/home/nikita/todos/todos
+ExecStart=/home/nikita/todos/env/bin/gunicorn --access-logfile - --workers 3 --bind unix:/home/nikita/todos/todos/todos.sock todos.wsgi:application
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=multi-user.targety

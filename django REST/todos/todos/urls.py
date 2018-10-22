@@ -1,4 +1,4 @@
-"""todo URL Configuration
+"""todos URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.11/topics/http/urls/
@@ -14,7 +14,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url, include
+from django.contrib import admin
+from rest_framework_jwt.views import obtain_jwt_token
+
 
 urlpatterns = [
-    url('', include('snippets.urls')),
+    url(r'^admin/', admin.site.urls),
+    url(r'^api/', include('api.urls')),
+    url(r'^api-token-auth/', obtain_jwt_token),
+    url('', include('tasks.urls')),
 ]

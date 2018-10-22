@@ -1,17 +1,30 @@
 server {
     listen 80;
     server_name 40.112.93.161;
-
+    
     location = /favicon.ico { access_log off; log_not_found off; }
 
+    root /home/nikita/todos/todos/static;	
+
     location / {
-	root /var/www/react-todo;	
-    }	
-
-
+        try_files $uri $uri/ /index.html;
+    }
+    
     location /api {
 	include proxy_params;
-	proxy_pass http://unix:/home/nikita/todo/todo/todo.sock;
+	proxy_pass http://unix:/home/nikita/todos/todos/todos.sock;
     }
-}
 
+    access_log /var/log/nginx/access.log;
+
+#    location /static/  {
+#            alias /home/nikita/todo/todo/static/;
+#    }
+
+
+    location /admin {
+        include proxy_params;
+        proxy_pass http://unix:/home/nikita/todos/todos/todos.sock;
+    }
+
+}
